@@ -14,3 +14,6 @@ spring:
       keyvault:
         secret:
           endpoint: https://uniquekeyvault123.vault.azure.net/
+          property-source-enabled: true
+          property-sources[0]:
+              endpoint: https://uniquekeyvault123.vault.azure.net/
