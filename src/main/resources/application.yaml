@@ -1,12 +1,18 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb;Mode=MySQL
-    driverClassName: org.h2.Driver
-    username: sa
-    password: password
+    url: jdbc:postgresql://kindjozsef-server.postgres.database.azure.com:5432/kindjozsef-database
+    driverClassName: org.postgresql.Driver
+    username: ${pgdbuser1}
+    password: ${pgdbpassword1}
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: none
   application:
     name: webapp
+
+
+
+
+azure:
+  keyvault:
+    uri: https://uniquekeyvault123.vault.azure.net/
