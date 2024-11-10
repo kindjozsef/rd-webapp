@@ -22,17 +22,14 @@ jobs:
           java-version: '17'
           distribution: 'microsoft'
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-
-      - name: Build with Gradle
-        run: ./gradlew clean build
+      - name: Build with Maven
+        run: mvn clean install
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: java-app
-          path: '${{ github.workspace }}/build/libs/webapp-0.0.1-SNAPSHOT.jar'
+          path: '${{ github.workspace }}/target/*.jar'
 
   deploy:
     runs-on: ubuntu-latest
@@ -52,9 +49,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_31DB5F4A23504CC791E6A455D801BBC3 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_2369DD50E9CD4A6994366A7F1DFF599D }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_87769232856942A78BE1E674AF659308 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_C26DB9FB85F14F339D53C1E10CD7F008 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_02C9931819B847569214C4D405FD2F1F }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_C38C8DB4AC7A40BDAAFBBF59F4413B3B }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
