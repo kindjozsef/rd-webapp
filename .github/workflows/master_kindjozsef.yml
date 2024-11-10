@@ -23,7 +23,7 @@ jobs:
           distribution: 'microsoft'
 
       - name: Build with Gradle
-        run: gradelw clean build
+        run: gradlew clean build
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
