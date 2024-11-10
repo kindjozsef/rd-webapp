@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://kindjozsef-server.postgres.database.azure.com:5432/kindjozsef-database
+    url: jdbc:postgresql://e837ba9cf6e3.privatelink.postgres.database.azure.com:5432/kindjozsef-database
     driverClassName: org.postgresql.Driver
     username: ${pgdbuser1}
     password: ${pgdbpassword1}
