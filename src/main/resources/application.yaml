@@ -9,10 +9,8 @@ spring:
       ddl-auto: none
   application:
     name: webapp
-
-
-
-
-azure:
-  keyvault:
-    uri: https://uniquekeyvault123.vault.azure.net/
+  cloud:
+    azure:
+      keyvault:
+        secret:
+          endpoint: https://uniquekeyvault123.vault.azure.net/
