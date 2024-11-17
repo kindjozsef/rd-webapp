@@ -13,7 +13,7 @@ spring:
     azure:
       keyvault:
         secret:
-          endpoint: https://uniquekeyvault1234.vault.azure.net/
+          endpoint: https://uniquekeyvault1234.privatelink.vaultcore.azure.net/
           property-source-enabled: true
           property-sources[0]:
-            endpoint: https://uniquekeyvault1234.vault.azure.net/
+            endpoint: https://uniquekeyvault1234.privatelink.vaultcore.azure.net/
