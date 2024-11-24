@@ -1,0 +1,30 @@
+name: Creates the azure infra via terraform
+
+on:
+  workflow_dispatch:
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_TERRAFORM_CREDENTIALS }}
+
+      - name: Terraform Init
+        run: terraform init
+        working-directory: infra
+
+      - name: Terraform Plan
+        run: terraform plan -var="subscription_id=${{ secrets.SUBSCRIPTION_ID }}" -var="tenant_id=${{ secrets.TENANT_ID }}" -var="admin_object_id=${{ secrets.ADMIN_OBJECT_ID }}" -var="terraform_account_object_id=${{ secrets.TERRAFORM_ACCOUNT_OBJECT_ID }}"
+        working-directory: infra
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve -var="subscription_id=${{ secrets.SUBSCRIPTION_ID }}" -var="tenant_id=${{ secrets.TENANT_ID }}" -var="admin_object_id=${{ secrets.ADMIN_OBJECT_ID }}" -var="terraform_account_object_id=${{ secrets.TERRAFORM_ACCOUNT_OBJECT_ID }}"
+        working-directory: infra
