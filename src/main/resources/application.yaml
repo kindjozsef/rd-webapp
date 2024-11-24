@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://kindjozsef2-server.postgres.database.azure.com:5432/kindjozsef2-database
+    url: jdbc:postgresql://kindjozsef-example-pg-server.postgres.database.azure.com:5432/postgres
     driverClassName: org.postgresql.Driver
     username: ${pgdbuser1}
     password: ${pgdbpassword1}
@@ -13,7 +13,7 @@ spring:
     azure:
       keyvault:
         secret:
-          endpoint: https://uniquekeyvault1234.vault.azure.net/
+          endpoint: https://rd-keyvault-12345.vault.azure.net/
           property-source-enabled: true
           property-sources[0]:
-            endpoint: https://uniquekeyvault1234.vault.azure.net/
+            endpoint: https://rd-keyvault-12345.vault.azure.net/
