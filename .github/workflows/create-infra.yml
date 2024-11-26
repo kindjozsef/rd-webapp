@@ -1,7 +1,7 @@
 name: Creates the azure infra via terraform
 
 on:
-  workflow_dispatch: # Manuális triggerelés is engedélyezve van
+  workflow_dispatch:
 
 jobs:
   terraform:
@@ -12,6 +12,10 @@ jobs:
         uses: actions/checkout@v4
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
+
+      - uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_TERRAFORM_CREDENTIALS }}
 
       - name: Terraform Init
         run: terraform init
