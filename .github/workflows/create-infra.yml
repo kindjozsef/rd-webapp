@@ -1,0 +1,26 @@
+name: Creates the azure infra via terraform
+
+on:
+  workflow_dispatch: # Manuális triggerelés is engedélyezve van
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        run: terraform init
+        working-directory: infra
+
+      - name: Terraform Plan
+        run: terraform plan
+        working-directory: infra
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+        working-directory: infra
