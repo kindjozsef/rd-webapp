@@ -22,9 +22,9 @@ jobs:
         working-directory: infra
 
       - name: Terraform Plan
-        run: terraform plan
+        run: terraform plan -var="my_ip=`$(curl -s https://api.ipify.org)`"
         working-directory: infra
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve -var="my_ip=`$(curl -s https://api.ipify.org)`"
         working-directory: infra

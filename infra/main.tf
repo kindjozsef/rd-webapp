@@ -56,7 +56,7 @@ resource "azurerm_key_vault" "keyvault-app-service" {
   network_acls {
     bypass         = "None"
     default_action = "Deny"
-    ip_rules = data.github_ip_ranges.github-action-ips.actions_ipv4
+    ip_rules = [var.my_ip]
   }
 
   public_network_access_enabled = "true"
