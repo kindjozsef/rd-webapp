@@ -26,5 +26,5 @@ jobs:
         working-directory: infra
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve -var="my_ip=`$(curl -s https://api.ipify.org)`"
+        run: terraform apply -auto-approve -var="my_ip=$(curl -s https://api.ipify.org)"
         working-directory: infra

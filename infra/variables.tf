@@ -39,3 +39,8 @@ variable "keyvault_name" {
   default     = "rd-keyvault-123456789"
   description = "TODO"
 }
+
+variable "my_ip" {
+  description = "The public IP address of the runner"
+  type        = string
+}
