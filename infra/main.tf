@@ -141,7 +141,7 @@ resource "random_password" "db_password" {
 resource "random_string" "db_username" {
   length           = 8
   special          = false
-  number           = false
+  numeric           = false
 }
 
 resource "azurerm_key_vault_secret" "keyvault-db-password" {
@@ -221,7 +221,7 @@ resource "azurerm_private_dns_zone_virtual_network_link" "vnet-link-db" {
 
 # Create PE
 resource "azurerm_private_endpoint" "tfer--keyvaultpe" {
-  location = azurerm_resource_group.rg.location
+  location = azurerm_key_vault.keyvault-app-service.location
   name     = "keyvaultpe"
 
   private_service_connection {
