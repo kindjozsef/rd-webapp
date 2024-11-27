@@ -141,6 +141,7 @@ resource "random_password" "db_password" {
 resource "random_string" "db_username" {
   length           = 8
   special          = false
+  number           = false
 }
 
 resource "azurerm_key_vault_secret" "keyvault-db-password" {
