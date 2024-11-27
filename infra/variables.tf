@@ -36,6 +36,6 @@ variable "admin_object_id_2" {
 
 variable "keyvault_name" {
   type        = string
-  default     = "rd-keyvalt-123456789-3"
+  default     = "rd-keyvalt-123456789-4"
   description = "TODO"
 }
