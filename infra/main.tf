@@ -93,11 +93,18 @@ resource "azurerm_key_vault" "keyvault-app-service" {
   }
 
   access_policy {
-    certificate_permissions = ["Backup", "Create", "Delete", "DeleteIssuers", "Get", "GetIssuers", "Import", "List", "ListIssuers", "ManageContacts", "ManageIssuers", "Recover", "Restore", "SetIssuers", "Update"]
-    key_permissions         = ["Backup", "Create", "Delete", "Get", "GetRotationPolicy", "Import", "List", "Recover", "Restore", "Rotate", "SetRotationPolicy", "Update"]
+    certificate_permissions = []
+    key_permissions         = []
     object_id               = var.admin_object_id_2
     secret_permissions      = ["Backup", "Delete", "Get", "List", "Recover", "Restore", "Set"]
     tenant_id               = var.tenant_id
+  }
+
+  access_policy {
+      key_permissions    = ["Get", "List"]
+      object_id          = azurerm_linux_web_app.webapp.identity[0].principal_id
+      secret_permissions = ["Get", "List"]
+      tenant_id          = var.tenant_id
   }
 
   enable_rbac_authorization       = "false"
