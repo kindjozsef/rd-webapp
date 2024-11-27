@@ -30,38 +30,6 @@ resource "azurerm_virtual_network" "vnet-rd-iac" {
 }
 
 # Create the subnets
-resource "azurerm_virtual_network" "vnet-rd-iac" {
-  address_space           = ["10.0.0.0/16"]
-  flow_timeout_in_minutes = "30"
-  location                = azurerm_resource_group.rg.location
-  name                    = "vnet-rd-iac"
-  resource_group_name     = azurerm_resource_group.rg.name
-}
-
-resource "random_password" "db_password" {
-  length           = 16
-  special          = true
-  override_special = "_%@"
-}
-
-resource "random_string" "db_username" {
-  length           = 8
-  special          = false
-}
-
-resource "azurerm_key_vault_secret" "keyvault-db-password" {
-  name         = "pgdbpassword1"
-  value        = random_password.db_password.result
-  key_vault_id = azurerm_key_vault.keyvault-app-service.id
-}
-
-resource "azurerm_key_vault_secret" "keyvault-db-username" {
-  name         = "pgdbuser1"
-  value        = random_string.db_username.result
-  key_vault_id = azurerm_key_vault.keyvault-app-service.id
-}
-
-# Create the subnets
 resource "azurerm_subnet" "subnet-rd-iac-pe-keyvault" {
   address_prefixes                               = ["10.0.3.0/24"]
   default_outbound_access_enabled                = "true"
@@ -156,6 +124,29 @@ resource "azurerm_key_vault" "keyvault-app-service" {
   }
 
   tenant_id = var.tenant_id
+}
+
+resource "random_password" "db_password" {
+  length           = 16
+  special          = true
+  override_special = "_%@"
+}
+
+resource "random_string" "db_username" {
+  length           = 8
+  special          = false
+}
+
+resource "azurerm_key_vault_secret" "keyvault-db-password" {
+  name         = "pgdbpassword1"
+  value        = random_password.db_password.result
+  key_vault_id = azurerm_key_vault.keyvault-app-service.id
+}
+
+resource "azurerm_key_vault_secret" "keyvault-db-username" {
+  name         = "pgdbuser1"
+  value        = random_string.db_username.result
+  key_vault_id = azurerm_key_vault.keyvault-app-service.id
 }
 
 # Create Private DNS Zone
