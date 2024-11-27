@@ -30,12 +30,12 @@ variable "admin_object_id" {
 
 variable "admin_object_id_2" {
   type        = string
-  default     = "0dc9aeb9-732f-4fb5-92b1-ebbb73804373"
+  default     = "3eeab002-d526-41b6-a30b-47a8ee40127b"
   description = "TODO"
 }
 
 variable "keyvault_name" {
   type        = string
-  default     = "rd-keyvalt-123456789-4"
+  default     = "rd-keyvalt-123456789-10"
   description = "TODO"
 }
