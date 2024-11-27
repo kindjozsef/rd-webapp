@@ -109,8 +109,7 @@ resource "azurerm_key_vault" "keyvault-app-service" {
 
   network_acls {
     bypass         = "None"
-    default_action = "Deny"
-    ip_rules = [var.my_ip]
+    default_action = "Allow"
   }
 
   public_network_access_enabled = "true"

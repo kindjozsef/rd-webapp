@@ -36,11 +36,6 @@ variable "admin_object_id_2" {
 
 variable "keyvault_name" {
   type        = string
-  default     = "rd-keyvault-123456789"
+  default     = "rd-keyvalt-123456789-3"
   description = "TODO"
-}
-
-variable "my_ip" {
-  description = "The public IP address of the runner"
-  type        = string
 }
