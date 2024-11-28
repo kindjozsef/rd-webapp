@@ -26,5 +26,5 @@ jobs:
         working-directory: infra
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve -var="subscription_id=${{ secrets.SUBSCRIPTION_ID }}" -var="tenant_id=${{ secrets.TENANT_ID }}" -var="admin_object_id=${{ secrets.ADMIN_OBJECT_ID }}" -var="terraform_account_object_id=${{ secrets.TERRAFORM_ACCOUNT_OBJECT_ID }}"
         working-directory: infra

@@ -95,7 +95,7 @@ resource "azurerm_key_vault" "keyvault-app-service" {
   access_policy {
     certificate_permissions = []
     key_permissions         = []
-    object_id               = var.admin_object_id_2
+    object_id               = var.terraform_account_object_id
     secret_permissions      = ["Backup", "Delete", "Get", "List", "Recover", "Restore", "Set"]
     tenant_id               = var.tenant_id
   }
