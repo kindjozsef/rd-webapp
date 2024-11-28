@@ -28,5 +28,5 @@ variable "terraform_account_object_id" {
 
 variable "keyvault_name" {
   type        = string
-  default     = "rd-keyvalt-123456789-10"
+  default     = "rd-keyvalt-ccdd"
 }

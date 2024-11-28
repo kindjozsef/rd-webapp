@@ -239,6 +239,13 @@ resource "azurerm_private_endpoint" "tfer--keyvaultpe" {
   }
 }
 
+resource "azurerm_application_insights" "app_insights" {
+  name                = "app-insights"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  application_type    = "java"
+}
+
 # Create webapp
 # Create the Linux App Service Plan
 
@@ -252,7 +259,7 @@ resource "azurerm_service_plan" "appserviceplan" {
 
 # Create the web app, pass in the App Service Plan ID
 resource "azurerm_linux_web_app" "webapp" {
-  name                  = "webapp-75497123451"
+  name                  = "webapp-754971234513"
   location              = azurerm_resource_group.rg.location
   resource_group_name   = azurerm_resource_group.rg.name
   service_plan_id       = azurerm_service_plan.appserviceplan.id
@@ -267,6 +274,10 @@ resource "azurerm_linux_web_app" "webapp" {
         java_server_version = "17"
     }
   }
+  app_settings = {
+      JAVA_OPTS = "-javaagent:/usr/local/azure/applicationinsights-agent.jar"
+      APPLICATIONINSIGHTS_CONNECTION_STRING = azurerm_application_insights.app_insights.connection_string
+    }
   identity {
     type = "SystemAssigned, UserAssigned"
     identity_ids = [
@@ -305,7 +316,7 @@ resource "azurerm_postgresql_flexible_server" "pg-server" {
   zone                          = "1"
 
   storage_mb   = 32768
-  storage_tier = "P30"
+  storage_tier = "P4"
 
-  sku_name   = "GP_Standard_D4s_v3"
+  sku_name   = "B_Standard_B1ms"
 }
