@@ -13,7 +13,7 @@ spring:
     azure:
       keyvault:
         secret:
-          endpoint: https://rd-keyvalt-ccdd.vault.azure.net/
+          endpoint: https://rd-keyvalt-ccddee.vault.azure.net/
           property-source-enabled: true
           property-sources[0]:
-            endpoint: https://rd-keyvalt-ccdd.vault.azure.net/
+            endpoint: https://rd-keyvalt-ccddee.vault.azure.net/

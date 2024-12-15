@@ -275,7 +275,6 @@ resource "azurerm_linux_web_app" "webapp" {
     }
   }
   app_settings = {
-      JAVA_OPTS = "-javaagent:/usr/local/azure/applicationinsights-agent.jar"
       APPLICATIONINSIGHTS_CONNECTION_STRING = azurerm_application_insights.app_insights.connection_string
     }
   identity {
